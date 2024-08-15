@@ -2,10 +2,13 @@
 const {By, Builder, Browser, until} = require('selenium-webdriver');
 
 async function testingScript() {
+    // Launch Chrome browser
     let driver = await new Builder().forBrowser(Browser.CHROME).build();
 
     try {
+        // Direct to the website URL
         await driver.get('http://localhost:2345/register.html');
+        // Input the records 10 times
         for (var i = 0; i < 10; i++) {
             await driver.get('http://localhost:2345/register.html');
             await driver.findElement(By.id('username')).sendKeys('test' + i);
@@ -23,9 +26,12 @@ async function testingScript() {
                     break;
                 }
             } catch (StaleElementReferenceException) {
+                // catch this to avoid the stale element error
                 error1 = error;
             }
         }
+        // This waits until the page is successfully redirected to the success page
+        // If unsuccessful, will wait 5 seconds before closing the program
         await driver.wait(until.titleIs('Registration Successful'), 5000);
     } finally {
         await driver.quit();
