@@ -3,8 +3,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
+// The port can be changed to unused port in case the specified port is in use
 const port = 2345;
 
+// Simple storage in server side
 const dataStorage = [];
 
 // Middleware
@@ -24,7 +26,7 @@ app.post('/validate', (req, res) => {
         entry.phone == phone
     );
 
-    
+    // Check the inputted data with the stored data
     if (storedRecord) {
         if (storedRecord.username == username) {
             errors.username = 'Username already exists.';
@@ -36,7 +38,7 @@ app.post('/validate', (req, res) => {
             errors.phone = 'Phone number already exists.'
         }
     } else {
-        // Basic validation
+        // Validation in the server side
         if (!username) {
             errors.username = 'Username is required.';
         }
@@ -56,7 +58,9 @@ app.post('/validate', (req, res) => {
         return res.status(400).json({ errors });
     }
 
+    // Stored the successful data in the previous array
     dataStorage.push({ username, email, phone });
+    // Show the stored data for viewing purpose
     console.log('Stored data: ', dataStorage);
 
     // If no errors
