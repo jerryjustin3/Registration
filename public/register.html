@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Page</title>
+    // link .css file for the elements
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -32,12 +33,14 @@
     </div>
 
     <script>
+        // Listen to the form to execute this program when the Register button is clicked
         document.getElementById('registrationForm').addEventListener('submit', async function (event) {
             // Prevent form submission
             event.preventDefault();
 
             // Clear previous error messages
             document.querySelectorAll('.error_message').forEach(el => el.textContent = '');
+            
             const username = document.getElementById('username');
             const email = document.getElementById('email');
             const phone = document.getElementById('phone');
@@ -45,6 +48,7 @@
             const emailValue = email.value.trim();
             const phoneValue = phone.value.trim();
 
+            // Basic validation in front-end side
             if (usernameValue == '') {
                 document.getElementById('usernameError').textContent = 'Username is required.';
             } else if (usernameValue.length < 3) {
@@ -67,7 +71,7 @@
                 document.getElementById('phoneError').textContent = '';
             }
 
-            // Gather form data
+            // Gather form data for validation and storage in backend server
             const formData = {
                 username: username.value.trim(),
                 email: email.value.trim(),
@@ -87,9 +91,7 @@
                 const result = await response.json();
 
                 if (response.ok) {
-                    // Successful response
-                    //alert('Form submitted successfully!');
-                    // Optionally, redirect or reset the form
+                    // Successful response will redirect to Success page
                     window.location.href = 'successPage.html';
                 } else {
                     // Display errors
