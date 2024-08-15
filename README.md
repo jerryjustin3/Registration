@@ -16,3 +16,6 @@ For automation script, it can be run by openning another terminal in the directo
 The script will automatically input the fields and register 10 times. In case of existing record in the storage, it will stop the script process and close in 5 seconds. Otherwise, the inputted records is successfully stored and the script will end.
 
 To check on the storage, go back to the first terminal that is running the server to check on the content. Then, to terminate the server, go to the terminal and press **Ctrl + C**.
+
+**Note:**
+If the used port for starting server is in use or unavailable, the port number can be changed inside the **server.js** file.
