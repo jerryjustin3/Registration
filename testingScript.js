@@ -5,7 +5,7 @@ async function testingScript() {
     let driver = await new Builder().forBrowser(Browser.CHROME).build();
 
     try {
-        //await driver.get('http://localhost:2345/register.html');
+        await driver.get('http://localhost:2345/register.html');
         for (var i = 0; i < 10; i++) {
             await driver.get('http://localhost:2345/register.html');
             await driver.findElement(By.id('username')).sendKeys('test' + i);
